@@ -32,6 +32,12 @@ namespace Benchmarks
             {
 
             }
+
+            [Benchmark] //possible third benhmark open for scrutiny.
+            public void Test3()
+            {
+
+            }
         }
     }
 }

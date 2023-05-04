@@ -12,7 +12,7 @@ namespace Maximum_SubArray_Value
         {
             Dictionary<int[], int> result = new Dictionary<int[], int>();
             //get aggregate of full array and gradually reduce aggregate map for each iteration.
-            //j is Zero based so 1 must be added for proper compensation.
+            //j is Zero based so 1 must be added for a proper compensation.
             for (int i = 0; i < arr.Length; i++)
             {
                 for (int j = 1; j < arr.Length; j++)

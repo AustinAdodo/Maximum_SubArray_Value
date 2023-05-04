@@ -1,0 +1,5 @@
+D:\Projects\Benchmarks\obj\Debug\net7.0\Benchmarks.csproj.AssemblyReference.cache
+D:\Projects\Benchmarks\obj\Debug\net7.0\Benchmarks.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Benchmarks\obj\Debug\net7.0\Benchmarks.AssemblyInfoInputs.cache
+D:\Projects\Benchmarks\obj\Debug\net7.0\Benchmarks.AssemblyInfo.cs
+D:\Projects\Benchmarks\obj\Debug\net7.0\Benchmarks.csproj.CoreCompileInputs.cache

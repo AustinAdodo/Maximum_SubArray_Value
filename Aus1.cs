@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Maximum_SubArray_Value
 {
-
     public class Aus1
     {
         public static int findLIS(int[] s)

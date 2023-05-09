@@ -22,7 +22,7 @@ namespace Maximum_SubArray_Value
                 }
             }
             int[] resultkey = result.Where(a => a.Value == result.Values.Max()).FirstOrDefault().Key;
-            Console.Write("Subarray [{0}] the Maximum value is {1}", string.Join(",", resultkey), result.Values.Max().ToString());
+            Console.Write("Subarray [{0}] has the Maximum value is {1}", string.Join(",", resultkey), result.Values.Max().ToString());
         }
     }
 }

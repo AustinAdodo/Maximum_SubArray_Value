@@ -24,7 +24,7 @@ namespace Maximum_SubArray_Value
             return null; // if file not found
         }
 
-        public static void Main()
+        public static void Main1()
         {
             string directoryPath = @"C:\Path\To\Search";
             string fileName = "odia";

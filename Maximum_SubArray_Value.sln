@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maximum_SubArray_Value", "Maximum_SubArray_Value.csproj", "{08466FB0-829E-4996-B242-17C3B6A71368}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maximum_SubArray_Value", "Maximum_SubArray_Value.csproj", "{08466FB0-829E-4996-B242-17C3B6A71368}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmarks", "..\Benchmarks\Benchmarks.csproj", "{DEFD7D0A-0CDB-4C40-8430-1D608A34B558}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benchmarks", "..\Benchmarks\Benchmarks.csproj", "{DEFD7D0A-0CDB-4C40-8430-1D608A34B558}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Someunittest1", "..\Someunittest1\Someunittest1.csproj", "{E85D4518-3EBD-4870-9296-C333D2878D25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DEFD7D0A-0CDB-4C40-8430-1D608A34B558}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEFD7D0A-0CDB-4C40-8430-1D608A34B558}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEFD7D0A-0CDB-4C40-8430-1D608A34B558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E85D4518-3EBD-4870-9296-C333D2878D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E85D4518-3EBD-4870-9296-C333D2878D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E85D4518-3EBD-4870-9296-C333D2878D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E85D4518-3EBD-4870-9296-C333D2878D25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

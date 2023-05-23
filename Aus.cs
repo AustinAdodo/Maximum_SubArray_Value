@@ -13,11 +13,21 @@ namespace Maximum_SubArray_Value
         public static bool validatesomeString(string s)
         {
             int[] Num = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            string[] words = { "a", "b" };// a,b,c ,
+            int b = 0;
+            char[] words = new char[26];
+            int index = 0;
+
+            for (char letter = 'A'; letter <= 'Z'; letter++)
+            {
+                words[index] = letter;
+                index++;
+            }
+            string[] words1 = Array.ConvertAll(words, a => a.ToString());
             bool result = true;
             for (int i = 0; i < s.Length; i++)
             {
-                if (!words.Contains(s[i].ToString()) && !Num.Contains(int.Parse(s[i].ToString()))) { return false; }
+                if (int.TryParse(s[i].ToString(), out b) == false) b = 11;
+                if (!words1.Contains(s[i].ToString().ToLower()) && !Num.Contains(b)) { return false; }
                 else { continue; }
             }
             return result;

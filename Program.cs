@@ -10,13 +10,7 @@ namespace Maximum_SubArray_Value
             //int[] arr = { 1, 4, 5, 2, 6 };
             //int[] arr1 = { 2,2,2,2,2 };
             string s = "ABCDE";
-            string result = String.Empty;
-            //for (int i = s.Length; i-- > 0;)
-            //{
-            //    result += s[i].ToString();
-            //}
-            //Console.WriteLine(result);
-            //Console.Write(string.Join("",s.Reverse()));    
+            string result = String.Empty;  
             Console.Write(Aus.validatesomeString("a&b"));
         }
     }

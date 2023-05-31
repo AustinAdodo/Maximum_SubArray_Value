@@ -19,7 +19,7 @@ namespace Maximum_SubArray_Value
             string[] files = Directory.GetFiles(directoryPath, fileName, SearchOption.AllDirectories);
 
             if (files.Length > 0)
-                return files[0]; 
+                return files[0];
 
             return null; // if file not found
         }
@@ -37,5 +37,5 @@ namespace Maximum_SubArray_Value
                 Console.WriteLine("File not found.");
         }
     }
-  
+
 }

@@ -39,5 +39,21 @@ namespace Maximum_SubArray_Value
             }
             return ans.Max();
         }
+
+        public static int[] ArrayMergeDifferentLengths(int[] nums1, int[] nums2)
+        {
+            int[] result = new int[nums1.Length + nums2.Length];
+            int nullablenum1 = 0;
+            int nullablenum2 = 0;
+            int limit = Math.Max(nums1.Length, nums2.Length);
+            for (int i = 0; i < limit; i++)
+            {
+                nullablenum1 = (i >= 0 && i < nums1.Length) ? nums1[i] : 0;
+                nullablenum2 = (i >= 0 && i < nums2.Length) ? nums2[i] : 0;
+                result[i] = (nullablenum1 < nullablenum2 && nullablenum1 > 0) ? nullablenum1 : nullablenum2;
+            }
+            result = result.Where(a => a > 0).ToArray();
+            return result;
+        }
     }
 }

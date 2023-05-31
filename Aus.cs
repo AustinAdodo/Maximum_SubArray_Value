@@ -48,5 +48,17 @@ namespace Maximum_SubArray_Value
             int[] resultkey = result.Where(a => a.Value == result.Values.Max()).FirstOrDefault().Key;
             Console.Write("Subarray [{0}] has the Maximum value is {1}", string.Join(",", resultkey), result.Values.Max().ToString());
         }
+        public static void FizzBuzz(int num)
+        {
+            string[] result = new string[num + 1];
+            for (int i = 1; i <= num; i++)
+            {
+                if (i % 3 == 0 && i % 5 != 0) result[i] = "Fizz";
+                if (i % 3 != 0 && i % 5 == 0) result[i] = "Buzz";
+                if (i % 3 == 0 && i % 5 == 0) result[i] = "FizzBuzz";
+                if (i % 3 != 0 && i % 5 != 0) result[i] = result[i] = i.ToString(); ;
+            }
+            Console.Write(string.Join(" ", result));
+        }
     }
 }

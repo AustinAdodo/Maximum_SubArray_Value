@@ -40,9 +40,9 @@ namespace Maximum_SubArray_Value
             return ans.Max();
         }
 
-        public static int[] ArrayMergeDifferentLengths(int[] nums1, int[] nums2)
+        public static List<int> ArrayMergeDifferentLengths(int[] nums1, int[] nums2)
         {
-            int[] result = new int[nums1.Length + nums2.Length];
+            List<int> result = new List<int>();
             int nullablenum1 = 0;
             int nullablenum2 = 0;
             int limit = Math.Max(nums1.Length, nums2.Length);
@@ -50,9 +50,34 @@ namespace Maximum_SubArray_Value
             {
                 nullablenum1 = (i >= 0 && i < nums1.Length) ? nums1[i] : 0;
                 nullablenum2 = (i >= 0 && i < nums2.Length) ? nums2[i] : 0;
-                result[i] = (nullablenum1 < nullablenum2 && nullablenum1 > 0) ? nullablenum1 : nullablenum2;
+                result.Add(Math.Min(nullablenum1, nullablenum2));
+                result.Add(Math.Max(nullablenum1, nullablenum2));
             }
-            result = result.Where(a => a > 0).ToArray();
+            List<int> result1 = result.Where(a => a > 0).ToList();
+            return result1;
+        }
+
+        public static string SpatialArrangement(string SampleString)
+        {
+            string[] temp = Array.ConvertAll(SampleString.ToCharArray(), s => s.ToString());
+            List<string> Alpha = new List<string>();
+            int x = 0;
+            for (char i = 'a'; i <= 'z'; i++)
+            {
+                Alpha.Add(i.ToString());
+            }
+            for (int i = 0; i < 26; i++)
+            {
+                Alpha.Add(Alpha[i].ToUpper());
+            }
+            String[] hold = temp.Where(a => Alpha.Contains(a)).ToArray();
+            string hold1 = string.Join("", hold.Reverse());
+            for (int i = 0; i < hold1.Length; i++, x++)
+            {
+                if (Alpha.Contains(temp[x])) temp[x] = hold1[i].ToString();
+                if (!Alpha.Contains(temp[x])) { i--; continue; }
+            }
+            string result = string.Join("", temp);
             return result;
         }
     }

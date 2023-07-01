@@ -70,7 +70,7 @@ namespace Maximum_SubArray_Value
             {
                 Alpha.Add(Alpha[i].ToUpper());
             }
-            String[] hold = temp.Where(a => Alpha.Contains(a)).ToArray();
+            String[] hold = temp.Where(Alpha.Contains).ToArray();
             string hold1 = string.Join("", hold.Reverse());
             for (int i = 0; i < hold1.Length; i++, x++)
             {

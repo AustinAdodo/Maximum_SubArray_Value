@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,6 +61,32 @@ namespace Maximum_SubArray_Value
                 if (i % 3 != 0 && i % 5 != 0) result[i] = result[i] = i.ToString(); ;
             }
             Console.Write(string.Join(" ", result));
+        }
+
+        public static string RepeatedStrings(string s)
+        {
+            //"tuuuuuriiiiiing"
+            //"tuuuriiing"
+            string result = string.Empty;
+            List<int> arr = new List<int>();
+            List<string> arr1 = new List<string>();
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (arr1.Contains(s[i].ToString())) continue;
+                if (!arr1.Contains(s[i].ToString())) arr1.Add(s[i].ToString());
+            }
+
+            for (int i = 0; i < arr1.Count; i++)
+            {
+                arr.Add(s.Split(arr1[i]).Length - 1);
+            }
+
+            for (int i = 0; i < arr1.Count; i++)
+            {
+                if (arr[i] >= 4) result+= new string(char.Parse(arr1[i]),3);
+                if (arr[i] < 4) result += new string(char.Parse(arr1[i]), arr[i]);
+            }
+            return result.Trim();
         }
     }
 }

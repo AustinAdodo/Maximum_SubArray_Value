@@ -10,7 +10,7 @@ namespace Maximum_SubArray_Value
 {
     public class Aus2
     {
-        public static bool validatesomeString(string s)
+        public static bool ValidatesomeString(string s)
         {
             int[] Num = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             int b = 0;
@@ -22,14 +22,16 @@ namespace Maximum_SubArray_Value
                 words[index] = letter;
             }
             string[] words1 = Array.ConvertAll(words, a => a.ToString());
+            string[] arr = Array.ConvertAll(s.ToCharArray(), a => a.ToString());
             bool result = true;
-            for (int i = 0; i < s.Length; i++)
-            {
-                if (int.TryParse(s[i].ToString(), out b) == false) b = 11;
-                if (!words1.Contains(s[i].ToString().ToLower()) && !Num.Contains(b)) { return false; }
-                else { continue; }
-            }
+            if (arr.Any(a => !words1.Contains(a.ToString().ToLower()) && int.TryParse(a, out b) == false)) return false;
             return result;
+            //for (int i = 0; i < s.Length; i++)
+            //{
+            //    if (int.TryParse(s[i].ToString(), out b) == false) b = 11;
+            //    if (!words1.Contains(s[i].ToString().ToLower()) && !Num.Contains(b)) { return false; }
+            //    else { continue; }
+            //}
         }
 
         static void Prob1(string[] args)

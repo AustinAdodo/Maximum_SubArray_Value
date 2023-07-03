@@ -65,11 +65,10 @@ namespace Maximum_SubArray_Value
 
         public static string RepeatedStrings(string s)
         {
-            //"tuuuuuriiiiiing"
-            //"tuuuriiing"
+          //method approach delivered consdering compiler groups similar characters nxt to each other.
             string result = string.Empty;
             List<List<Tuple<string, int>>> counterList = new List<List<Tuple<string, int>>>();
-            List<Tuple<string, int>> currentCounter = null;
+            List<Tuple<string, int>>? currentCounter = null;
 
             for (int i = 0; i < s.Length; i++)
             {
@@ -90,7 +89,6 @@ namespace Maximum_SubArray_Value
                     currentCounter.Add(new Tuple<string, int>(s[i].ToString(), 1));
                 }
             }
-
             foreach (var counter in counterList)
             {
                 foreach (var tuple in counter)

@@ -68,25 +68,39 @@ namespace Maximum_SubArray_Value
             //"tuuuuuriiiiiing"
             //"tuuuriiing"
             string result = string.Empty;
-            List<int> arr = new List<int>();
-            List<string> arr1 = new List<string>();
+            List<List<Tuple<string, int>>> counterList = new List<List<Tuple<string, int>>>();
+            List<Tuple<string, int>> currentCounter = null;
+
             for (int i = 0; i < s.Length; i++)
             {
-                if (arr1.Contains(s[i].ToString())) continue;
-                if (!arr1.Contains(s[i].ToString())) arr1.Add(s[i].ToString());
+                if (i == 0 || s[i] != s[i - 1])
+                {
+                    currentCounter = new List<Tuple<string, int>>();
+                    counterList.Add(currentCounter);
+                }
+
+                if (currentCounter.Count > 0)
+                {
+                    var last = currentCounter.Last();
+                    currentCounter.RemoveAt(currentCounter.Count - 1);
+                    currentCounter.Add(new Tuple<string, int>(last.Item1, last.Item2 + 1));
+                }
+                else
+                {
+                    currentCounter.Add(new Tuple<string, int>(s[i].ToString(), 1));
+                }
             }
 
-            for (int i = 0; i < arr1.Count; i++)
+            foreach (var counter in counterList)
             {
-                arr.Add(s.Split(arr1[i]).Length - 1);
-            }
-
-            for (int i = 0; i < arr1.Count; i++)
-            {
-                if (arr[i] >= 4) result+= new string(char.Parse(arr1[i]),3);
-                if (arr[i] < 4) result += new string(char.Parse(arr1[i]), arr[i]);
+                foreach (var tuple in counter)
+                {
+                    if (tuple.Item2 < 4) result += new string(char.Parse(tuple.Item1), tuple.Item2);
+                    if (tuple.Item2 >= 4) result += new string(char.Parse(tuple.Item1), 3);
+                }
             }
             return result.Trim();
         }
+
     }
 }

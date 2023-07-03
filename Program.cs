@@ -11,7 +11,7 @@ namespace Maximum_SubArray_Value
             //Aus.FizzBuzz(15);
             //Console.Write(Aus1.SpatialArrangement("a-bC-dEf=ghIj!!"));
             //Console.Write(Aus1.SpatialArrangement("ab-cd"));
-            Console.Write(Aus.RepeatedStrings("tuuuuuriiiiiing"));
+            Console.Write(Aus.RepeatedStrings("baaliiistiiiic"));
         }
     }
 }

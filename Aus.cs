@@ -69,7 +69,6 @@ namespace Maximum_SubArray_Value
             string result = string.Empty;
             List<List<Tuple<string, int>>> counterList = new List<List<Tuple<string, int>>>();
             List<Tuple<string, int>>? currentCounter = null;
-
             for (int i = 0; i < s.Length; i++)
             {
                 if (i == 0 || s[i] != s[i - 1])

@@ -65,36 +65,27 @@ namespace Maximum_SubArray_Value
 
         public static string RepeatedStrings(string s)
         {
-          //method approach delivered consdering compiler groups similar characters nxt to each other.
-            string result = string.Empty;
-            List<List<Tuple<string, int>>> counterList = new List<List<Tuple<string, int>>>();
-            List<Tuple<string, int>>? currentCounter = null;
+            string result = String.Empty;
+            List<Tuple<string, int>> counter = new List<Tuple<string, int>>();
+            //string s = "baaliiistiiiic";
+
             for (int i = 0; i < s.Length; i++)
             {
-                if (i == 0 || s[i] != s[i - 1])
+                if (counter.Count == 0 || s[i] != s[i - 1])
                 {
-                    currentCounter = new List<Tuple<string, int>>();
-                    counterList.Add(currentCounter);
-                }
-
-                if (currentCounter.Count > 0)
-                {
-                    var last = currentCounter.Last();
-                    currentCounter.RemoveAt(currentCounter.Count - 1);
-                    currentCounter.Add(new Tuple<string, int>(last.Item1, last.Item2 + 1));
+                    counter.Add(new Tuple<string, int>(s[i].ToString(), 1));
                 }
                 else
                 {
-                    currentCounter.Add(new Tuple<string, int>(s[i].ToString(), 1));
+                    int temp = counter.Last().Item2;
+                    counter.RemoveAt(counter.Count - 1);
+                    counter.Add(new Tuple<string, int>(s[i].ToString(), temp + 1));
                 }
             }
-            foreach (var counter in counterList)
+            foreach (var tuple in counter)
             {
-                foreach (var tuple in counter)
-                {
-                    if (tuple.Item2 < 4) result += new string(char.Parse(tuple.Item1), tuple.Item2);
-                    if (tuple.Item2 >= 4) result += new string(char.Parse(tuple.Item1), 3);
-                }
+                if (tuple.Item2 < 4) result += new string(char.Parse(tuple.Item1), tuple.Item2);
+                if (tuple.Item2 >= 4) result += new string(char.Parse(tuple.Item1), 3);
             }
             return result.Trim();
         }

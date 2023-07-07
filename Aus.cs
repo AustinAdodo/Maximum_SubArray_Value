@@ -67,7 +67,6 @@ namespace Maximum_SubArray_Value
         {
             string result = String.Empty;
             List<Tuple<string, int>> counter = new List<Tuple<string, int>>();
-            //string s = "baaliiistiiiic";
 
             for (int i = 0; i < s.Length; i++)
             {
@@ -89,6 +88,16 @@ namespace Maximum_SubArray_Value
             }
             return result.Trim();
         }
-
+        public static string Capitalize(string s)
+        {
+            List<string> alpha = new List<string>();
+            for (char i = 'a'; i <= 'z'; i++)
+            {
+                alpha.Add(i.ToString());
+            }
+            string[] ss = Array.ConvertAll(s.ToCharArray(), s => s.ToString());
+            return string.Join("", ss.Select((a, i) => i == 0 || (i > 0 && ss[i - 1] == "_") ? a.ToUpper() : a.ToString())
+                .Where(a => alpha.Contains(a.ToLower())));
+        }
     }
 }

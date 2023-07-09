@@ -23,9 +23,7 @@ namespace Benchmarks
             [Benchmark(Baseline = true)]
             public void Test1()
             {
-                int[] TestArr = { -2, -1, -4, 4, 7, 20, 1, 2, 5, -1, -4 };
-                int[] TestArr2 = { 3, 2, -4, -23, 7, 11, 7, 9, 100, -1, -1 };
-                Aus.Maximum_Subarray(TestArr);
+                //Aus.Maximum_Subarray();
             }
             [Benchmark] //open for scrutiny.
             public void Test2()

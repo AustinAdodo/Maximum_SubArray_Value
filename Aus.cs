@@ -99,5 +99,32 @@ namespace Maximum_SubArray_Value
             return string.Join("", ss.Select((a, i) => i == 0 || (i > 0 && ss[i - 1] == "_") ? a.ToUpper() : a.ToString())
                 .Where(a => alpha.Contains(a.ToLower())));
         }
+        static int LongestSubstring(string s)
+        {
+            int Maxvalue = 0; int shift = 0; int count = 0;
+            Dictionary<char, int> result = new Dictionary<char, int>();
+            if (s.All(a => a == s[0])) return 1;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (result.ContainsKey(s[i])) { i = shift; shift++; count = result.Count; result.Clear(); }
+                else { result.Add(s[i], 1); }
+                if (count > Maxvalue) Maxvalue = count;
+            }
+            return Maxvalue;
+        }
+        public static string MostRequestedCharacterMethod1(string characters)
+        {
+            List<List<string>> results = new List<List<string>>();
+            for (int i = 0; i < characters.Length; i++)
+            {
+                if (!results.Any(a => a[0].Contains(characters[i])))
+                {
+                    results.Add(new List<string>() { characters[i].ToString(), (characters.Split(characters[i]).Length - 1).ToString() });
+                }
+            }
+            results.Sort((x, y) => int.Parse(x[1]).CompareTo(int.Parse(y[1])));
+            results.Reverse();
+            return results[0][0];
+        }
     }
 }

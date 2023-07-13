@@ -5,8 +5,12 @@ namespace Maximum_SubArray_Value
     {
         static void Main(string[] args)
         {
-            //int[] TestArr = { -2, -1, -4, 4, 7, 20, 1, 2, 5, -1, -4 };
-            Console.Write(Aus.Capitalize("optimus_prime"));
+            //gggggggggggggggggggggggggggggg
+            //9, 8, 7, 6, 5
+            //int[] TestArr = { 1, 2, 1, 2, 1 }; //= 10
+            int[] TestArr = { 9, 8, 7, 6, 5 }; //=4
+            Console.Write(Aus.CountSawTooth(TestArr)); 
+            //Console.Write(Aus.stringSplit("gggggggggggggggggggggggggggggg"));
         }
     }
 }

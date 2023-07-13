@@ -1,16 +1,19 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Specialized;
 
 namespace Maximum_SubArray_Value
 {
     public class Aus
     {
         //validate string contains only alpa number...
+        //dynamic programming
 
         public static bool validatesomeString(string s)
         {
@@ -47,6 +50,7 @@ namespace Maximum_SubArray_Value
                     result[temp] = temp.Sum();
                 }
             }
+
             int[] resultkey = result.Where(a => a.Value == result.Values.Max()).FirstOrDefault().Key;
             Console.Write("Subarray [{0}] has the Maximum value is {1}", string.Join(",", resultkey), result.Values.Max().ToString());
         }
@@ -126,5 +130,199 @@ namespace Maximum_SubArray_Value
             results.Reverse();
             return results[0][0];
         }
+
+        //
+        //Assume all bills are always available 1000, dic[50] += (amount % 100) / 50;
+        public static List<int> Withdraw(int amount)
+        {
+            List<int> result = new List<int>();
+            Dictionary<int, int> dic = new Dictionary<int, int>() { { 100, 0 }, { 50, 0 }, { 20, 0 } };
+            if (amount >= 100) { dic[100] += amount / 100; amount %= 100; }
+            if (amount >= 50 && amount < 100) { dic[50] += (amount / 50); amount %= 50; }
+            if (amount < 50 && amount > 0) { dic[20] += (amount / 20); amount %= 20; }
+            //check if theres a remainder at the end.
+            if (amount != 0 && dic[50] > 0)
+            {
+                dic[50]--; dic[20] = (50 + amount + (dic[20]) * 20) / 20;
+                foreach (var item in dic)
+                {
+                    result.Add(item.Value);
+                }
+                return result;
+            }
+            if (amount != 0 && dic[50] == 0)
+            {
+                dic[100]--; dic[50]++; dic[20] = (50 + amount + (dic[20]) * 20) / 20;
+                foreach (var item in dic)
+                {
+                    result.Add(item.Value);
+
+                }
+                return result;
+            }
+            foreach (var item in dic)
+            {
+                result.Add(item.Value);
+            }
+            return result;
+        }
+        //complex chunks.
+        public static IEnumerable<string> ChunkIter(string s, int chunks)
+        {
+            string[] arr = Array.ConvertAll(s.ToCharArray(), c => c.ToString());
+            int[] arr2 = new int[chunks]; int p = 0;
+            List<string> result = new List<string>();
+            if (s.Length > 0 && s.Length <= chunks) return arr;
+            if (s.Length > 0 && chunks == 0) throw new ArgumentException();
+            if (s.Length == 0 && chunks >= 0) return Array.Empty<string>();
+            if (s.Length > 0 && s.Length > chunks)
+            {
+                for (int i = 0; i < s.Length; i++)
+                {
+                    int b = (s.Length - i > chunks) ? chunks : s.Length - i;
+                    for (int j = 0; j < b; j++)
+                    {
+                        arr2[j]++;
+                    }
+                    i += (s.Length - i > chunks) ? chunks - 1 : s.Length - i;
+                }
+            }
+            for (int i = 0; i < arr2.Length; i++, p += arr2[i])
+            {
+                result.Add(s.Substring(p, arr2[i]));
+                //p += arr2[i];
+            }
+            return result;
+        }
+        public static string[] Chunk(string s, int chunks)
+        {
+            List<string> result = new List<string>();
+            result = ChunkIter(s, chunks).ToList();
+            return result.ToArray();
+        }
+
+        public static int[] ArrangeNums(int[] k)
+        {
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+            for (int i = 0; i < k.Length; i++)
+            {
+                //Math.Abs()
+            }
+            List<int> result = new List<int>();
+
+            foreach (var kvp in dic)
+            {
+                int key = kvp.Key;
+                int value = kvp.Value;
+
+                result.AddRange(Enumerable.Repeat(key, value));
+            }
+            return result.ToArray();
+        }
+
+        public static bool IsSawToothArr(int[] arr)
+        {
+            //bool result = false;    
+            if (arr.Length > 1 && arr[0] < arr[1])
+            {
+                //LinkedHashMap
+                //OrderedDictionary linkedHashMap = new OrderedDictionary();
+                //if (arr.Length == 2) return true;
+                for (int i = 1; i < arr.Length; i += 2)
+                {
+                    if (arr.Length == 2) return true;
+                    if (i + 1 <= arr.Length - 1 && arr[i - 1] < arr[i] && arr[i] > arr[i + 1] 
+                        || i == arr.Length - 1 && arr[i] > arr[i-1]) continue;
+                    return false;
+                }
+                return true;
+            }
+
+            if (arr.Length > 1 && arr[0] > arr[1])
+            {
+                //if (arr.Length == 2) return true;
+                for (int i = 1; i < arr.Length; i += 2)
+                {
+                    if (arr.Length == 2) return true;
+                    if (i + 1 <= arr.Length - 1 && arr[i - 1] > arr[i] && arr[i] < arr[i + 1]
+                        || i == arr.Length - 1 && arr[i] < arr[i - 1]) continue;
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+
+        //Taking Only Contigious Sub Arrays.
+        public static long CountSawTooth(int[] arr)
+        {
+            int ans = 0;
+            if (arr.All(a => a == arr[0])) return 0;
+            //new ArrayEqualityComparer()
+            HashSet<int[]> result = new HashSet<int[]>();
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                for (int j = 1; i + j <= arr.Length; j++)
+                {
+                    int[] temp = arr.Skip(i).Take(j).ToArray();
+                    result.Add(temp);
+                }
+            }
+
+            //result.Add(arr);
+            foreach (var kvp in result)
+            {
+                if (IsSawToothArr(kvp)) ans++;
+            }
+            return ans;
+        }
+
+        public class ArrayEqualityComparer : IEqualityComparer<int[]>
+        {
+            public bool Equals(int[] x, int[] y)
+            {
+                if (ReferenceEquals(x, y))
+                    return true;
+
+                if (ReferenceEquals(x, null) || ReferenceEquals(y, null))
+                    return false;
+
+                if (x.Length != y.Length)
+                    return false;
+
+                for (int i = 0; i < x.Length; i++)
+                {
+                    if (x[i] != y[i])
+                        return false;
+                }
+
+                return true;
+            }
+
+            public int GetHashCode(int[] obj)
+            {
+                if (ReferenceEquals(obj, null))
+                    return 0;
+
+                int hashCode = 17;
+
+                foreach (int item in obj)
+                {
+                    hashCode = hashCode * 31 + item.GetHashCode();
+                }
+
+                return hashCode;
+            }
+        }
+
+        public static int stringSplit(string s)
+        {
+            //n! / (r! * (n - r)!)
+            int l = s.Length;
+            int rresult = 0;
+            return rresult;
+        }
     }
 }
+

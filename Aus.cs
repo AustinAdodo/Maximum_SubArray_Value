@@ -7,6 +7,9 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Specialized;
+using System.Net.Http.Headers;
+using System.Data;
+using System.Security;
 
 namespace Maximum_SubArray_Value
 {
@@ -14,7 +17,6 @@ namespace Maximum_SubArray_Value
     {
         //validate string contains only alpa number...
         //dynamic programming
-
         public static bool validatesomeString(string s)
         {
             int[] Num = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -166,6 +168,7 @@ namespace Maximum_SubArray_Value
             }
             return result;
         }
+
         //complex chunks.
         public static IEnumerable<string> ChunkIter(string s, int chunks)
         {
@@ -187,13 +190,14 @@ namespace Maximum_SubArray_Value
                     i += (s.Length - i > chunks) ? chunks - 1 : s.Length - i;
                 }
             }
-            for (int i = 0; i < arr2.Length; i++, p += arr2[i])
+            for (int i = 0; i < arr2.Length; i++)
             {
                 result.Add(s.Substring(p, arr2[i]));
-                //p += arr2[i];
+                p += arr2[i];
             }
             return result;
         }
+
         public static string[] Chunk(string s, int chunks)
         {
             List<string> result = new List<string>();
@@ -231,8 +235,8 @@ namespace Maximum_SubArray_Value
                 for (int i = 1; i < arr.Length; i += 2)
                 {
                     if (arr.Length == 2) return true;
-                    if (i + 1 <= arr.Length - 1 && arr[i - 1] < arr[i] && arr[i] > arr[i + 1] 
-                        || i == arr.Length - 1 && arr[i] > arr[i-1]) continue;
+                    if (i + 1 <= arr.Length - 1 && arr[i - 1] < arr[i] && arr[i] > arr[i + 1]
+                        || i == arr.Length - 1 && arr[i] > arr[i - 1]) continue;
                     return false;
                 }
                 return true;
@@ -318,11 +322,75 @@ namespace Maximum_SubArray_Value
 
         public static int stringSplit(string s)
         {
-            //n! / (r! * (n - r)!)
+            int ans = 0;
+            List<Tuple<string, string, string>> result = new List<Tuple<string, string, string>>();
+            foreach (var item in result)
+            {
+
+            }
             int l = s.Length;
-            int rresult = 0;
-            return rresult;
+            return ans;
         }
+
+        //Test Alaignment algo
+        public static IList<string> FullJustify(string[] words, int maxWidth)
+        {
+            List<List<string>> stacks = new List<List<string>>();
+            List<string> ans = new List<string>();
+            List<string> temp = new List<string>();
+            for (int i = 0; i < words.Length; ++i)
+            {
+                if (temp.Count == 0 && i < words.Length - 1) { temp.Add(words[i]); continue; }
+
+                if ((string.Join(" ", temp) + " " + words[i]).Length < maxWidth && i < words.Length - 1)
+                { string s = string.Join(" ", temp) + " " + words[i]; temp.Clear(); temp.Add(s); continue; }
+
+                if ((string.Join(" ", temp) + " " + words[i]).Length == maxWidth)
+                {
+                    string s = string.Join(" ", temp) + " " + words[i]; temp.Clear(); temp.Add(s);
+                    stacks.Add(new List<string> { string.Join(" ", temp) }); continue;
+                }
+
+                if ((string.Join(" ", temp) + " " + words[i]).Length > maxWidth)
+                { stacks.Add(new List<string> { string.Join(" ", temp) }); temp.Clear(); i--; continue; }
+
+                else { temp.Add(words[i]); stacks.Add(temp); break; }
+            }
+            foreach (List<string> item in stacks)
+            {
+                string[] sub = string.Join(" ", item).Split(" ");
+                if (sub.Length > 1)
+                {
+                    //Add Spaces in chunks
+                    int diff = maxWidth - string.Join(" ", item).Length;
+                    for (int i = 0; i < sub.Length && diff > 0; ++i)
+                    {
+                        if (i < sub.Length - 1) { sub[i] = sub[i] + " "; diff--; }
+                        if (i == sub.Length - 1 && diff > 0) i = -1;
+                    }
+                }
+                else
+                {
+                    int diff = maxWidth - sub[0].Length;
+                    sub[0] = sub[0] + new string(' ', diff);
+                }
+                //while (diff > 0) { sub.Select(a => (sub.ToList().IndexOf(a) < sub.Length - 1) ? a + " " : a).ToList(); diff -= sub.Length; }
+                ans.Add(string.Join(" ", sub));
+            }
+            return ans;
+        }
+        static bool HasDuplicatesInSecondColumn(List<List<string>> twoDList)
+        {
+            // Extract the second column values using LINQ
+            IEnumerable<string> secondColumnValues = twoDList.Select(row => row[1]);
+            // Check if any value occurs more than once
+            bool hasDuplicates = secondColumnValues.GroupBy(value => value)
+                                                  .Any(group => group.Count() > 1);
+
+            return hasDuplicates;
+        }
+
     }
 }
+
 

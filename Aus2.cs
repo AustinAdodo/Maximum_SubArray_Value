@@ -28,30 +28,7 @@ namespace Maximum_SubArray_Value
             return result;
         }
 
-        static void Prob1(string[] args)
-        {
-            string months = Console.ReadLine();
-            string[] arr = Array.ConvertAll(months.ToCharArray(), a => a.ToString());
-            string[] check = { "J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D" };
-            if (arr[arr.Length - 1] == "D") Console.WriteLine("J");
-            for (int i = 0; i < check.Length; i++)
-            {
-                if (check[i] == arr[0] && check[i + i] == arr[1]) Console.WriteLine(arr[3]);
-                if (check[i] == "D") i = -1;
-            }
-        }
-
-        static void camelCase(string s)
-        {
-            string[] st = Array.ConvertAll(s.ToCharArray(), s => s.ToString());
-            List<string> alpha = new List<string>();
-            for (char i = 'a'; i <= 'z'; i++)
-            {
-
-            }
-            //return string.Join("",)
-        }
-
+        //Midpoint
         static void TupleSet(string[] args)
         {
             int N = int.Parse(Console.ReadLine());
@@ -71,7 +48,6 @@ namespace Maximum_SubArray_Value
 
             Console.WriteLine("answer");
         }
-
     }
 
     public class FileSearcher

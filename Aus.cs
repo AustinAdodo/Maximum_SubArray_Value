@@ -15,6 +15,7 @@ namespace Maximum_SubArray_Value
 {
     public class Aus
     {
+        //bool isIncreasing = s.Zip(s.Skip(1), (a, b) => b > a).All(x => x);
         //validate string contains only alpa number...
         //dynamic programming
         public static bool validatesomeString(string s)
@@ -101,10 +102,22 @@ namespace Maximum_SubArray_Value
             {
                 alpha.Add(i.ToString());
             }
-            string[] ss = Array.ConvertAll(s.ToCharArray(), s => s.ToString());
-            return string.Join("", ss.Select((a, i) => i == 0 || (i > 0 && ss[i - 1] == "_") ? a.ToUpper() : a.ToString())
+            return string.Join("", s.Select((a, i) => i == 0 || (i > 0 && s[i - 1].ToString() == "_") ? a.ToString().ToUpper() : a.ToString())
                 .Where(a => alpha.Contains(a.ToLower())));
         }
+
+        //CamelCase
+        public static void camelCase(string s)
+        {
+            string[] st = Array.ConvertAll(s.ToCharArray(), s => s.ToString());
+            List<string> alpha = new List<string>();
+            for (char i = 'a'; i <= 'z'; i++)
+            {
+
+            }
+            //return string.Join("",)
+        }
+
         static int LongestSubstring(string s)
         {
             int Maxvalue = 0; int shift = 0; int count = 0;
@@ -381,9 +394,7 @@ namespace Maximum_SubArray_Value
         }
         static bool HasDuplicatesInSecondColumn(List<List<string>> twoDList)
         {
-            // Extract the second column values using LINQ
             IEnumerable<string> secondColumnValues = twoDList.Select(row => row[1]);
-            // Check if any value occurs more than once
             bool hasDuplicates = secondColumnValues.GroupBy(value => value)
                                                   .Any(group => group.Count() > 1);
 

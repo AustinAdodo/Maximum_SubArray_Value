@@ -12,22 +12,12 @@ namespace Maximum_SubArray_Value
     {
         public static bool ValidatesomeString(string s)
         {
-            int[] Num = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            int b = 0;
-            char[] words = new char[26];
-            int index = 0;
-
-            for (char letter = 'A'; letter <= 'Z'; letter++, index++)
-            {
-                words[index] = letter;
-            }
-            string[] words1 = Array.ConvertAll(words, a => a.ToString());
-            string[] arr = Array.ConvertAll(s.ToCharArray(), a => a.ToString());
-            bool result = true;
-            if (arr.Any(a => !words1.Contains(a.ToString().ToLower()) && int.TryParse(a, out b) == false)) return false;
+            int[] Num = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };int b = 0;int index = 0;
+            string[] words = new string[26];bool result = true;
+            for (char letter = 'A'; letter <= 'Z'; letter++, index++) words[index] = letter.ToString();
+            if (s.Any(a => !words.Contains(a.ToString().ToLower()) && int.TryParse(a.ToString(), out b) == false)) return false;
             return result;
         }
-
         //Midpoint
         static void TupleSet(string[] args)
         {
@@ -49,7 +39,6 @@ namespace Maximum_SubArray_Value
             Console.WriteLine("answer");
         }
     }
-
     public class FileSearcher
     {
         public static string FileLocate(string directoryPath, string fileName)

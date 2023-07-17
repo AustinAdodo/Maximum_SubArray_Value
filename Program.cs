@@ -29,7 +29,8 @@ namespace Maximum_SubArray_Value
             //else { Console.Write(string.Join(",", tups.OrderBy(a => a.Item2))); }
             bool result = concerned.Zip(concerned.Skip(1), (a, b) =>
             Math.Abs(concerned.ToList().IndexOf(a) - concerned.ToList().IndexOf(b)) == 1).Any(a => a);
-            Console.Write(result);
+            ////Console.Write(result);
+            Console.Write(String.Join(",",Aus.ChunkIter("FavouriteSkip",3)));
         }
     }
 }

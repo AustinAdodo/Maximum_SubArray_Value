@@ -70,6 +70,7 @@ namespace Maximum_SubArray_Value
             Console.Write(string.Join(" ", result));
         }
 
+        //Applied Tuples and using tuples to handle numerous data types where uniqu values arent intended.
         public static string RepeatedStrings(string s)
         {
             string result = String.Empty;
@@ -95,6 +96,7 @@ namespace Maximum_SubArray_Value
             }
             return result.Trim();
         }
+
         public static string Capitalize(string s)
         {
             List<string> alpha = new List<string>();
@@ -182,7 +184,28 @@ namespace Maximum_SubArray_Value
             return result;
         }
 
-        //complex chunks.
+        //complex chunks Methond method
+
+        public static IEnumerable<string> ChunkIter2(string s, int chunks)
+        {
+            int[] arr2 = new int[chunks]; int p = 0;
+            int chunker = chunks;
+            int[] store = new int[chunks];
+            List<string> result = new List<string>();
+            if (s.Length > 0 && s.Length <= chunks) return s.Select(c => c.ToString()); ;
+            if (s.Length > 0 && chunks == 0) throw new ArgumentException();
+            if (s.Length == 0 && chunks >= 0) return Array.Empty<string>();
+            int premium = s.Length;
+
+            for (int i = 0; i < arr2.Length; i++)
+            {
+                result.Add(s.Substring(p, arr2[i]));
+                p += arr2[i];
+            }
+            return result;
+        }
+
+        //Complex Chunks first method
         public static IEnumerable<string> ChunkIter(string s, int chunks)
         {
             string[] arr = Array.ConvertAll(s.ToCharArray(), c => c.ToString());

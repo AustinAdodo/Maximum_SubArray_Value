@@ -423,8 +423,21 @@ namespace Maximum_SubArray_Value
 
             return hasDuplicates;
         }
-
+        public static bool IsValid(string s)
+        {
+            Dictionary<char, char> opcl = new Dictionary<char, char>
+        {
+            { '(', ')' },
+            { '[', ']' },
+            { '{' , '}' }
+        };
+            Stack<char> stack = new Stack<char>();
+            foreach (char i in s)
+            {
+                if (i == '(' || i == '[' || i == '{') stack.Push(i);
+                else if (stack.Count == 0 || i != opcl[stack.Pop()])return false;
+            }
+            return stack.Count == 0;
+        }
     }
 }
-
-

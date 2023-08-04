@@ -444,7 +444,7 @@ namespace Maximum_SubArray_Value
             return stack.Count == 0;
         }
 
-        public async static void Quest(string[] args)
+        public async static void Quest()
         {
             HttpClient client = new HttpClient();
             string uri = "https://coderbyte.com/api/challenges/json/age-counting";
@@ -468,7 +468,9 @@ namespace Maximum_SubArray_Value
                     }
                 }
             }
-            Console.WriteLine($"{count}hXblXq7Xc1");
+            string ans = "hvblwq79c1";
+            ans = string.Join("", ans.Select((i, ele) => i + 1 % 3 == 0 ? 'X' : ele));
+            Console.WriteLine($"{ans}");
         }
 
         public static async Task<string> retrieve()
@@ -521,7 +523,6 @@ namespace Maximum_SubArray_Value
         {
             List<string> ids = new List<string>();
             Dictionary<string, int> idCount = new Dictionary<string, int>();
-
             // Regular expression pattern to match the IDs
             string pattern = @"\?shareLinkId=(\w+)";
             MatchCollection matches = Regex.Matches(logs, pattern);
@@ -539,7 +540,6 @@ namespace Maximum_SubArray_Value
                     ids.Add(id);
                 }
             }
-
             // Append :N to IDs that appear more than once
             for (int i = 0; i < ids.Count; i++)
             {
@@ -548,11 +548,9 @@ namespace Maximum_SubArray_Value
                     ids[i] = $"{ids[i]}:{idCount[ids[i]]}";
                 }
             }
-
             return ids;
         }
-
-        static void Quest2(string[] args)
+        public static async void Quest2(string[] args)
         {
             try
             {

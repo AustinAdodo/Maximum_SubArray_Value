@@ -11,6 +11,8 @@ using System.Net.Http.Headers;
 using System.Data;
 using System.Security;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Maximum_SubArray_Value
 {
@@ -424,6 +426,7 @@ namespace Maximum_SubArray_Value
 
             return hasDuplicates;
         }
+
         public static bool IsValid(string s)
         {
             Dictionary<char, char> opcl = new Dictionary<char, char>
@@ -441,11 +444,12 @@ namespace Maximum_SubArray_Value
             return stack.Count == 0;
         }
 
-        public static void Quest(string[] args)
+        public async static void Quest(string[] args)
         {
-            WebClient client = new WebClient();
-            string s =
-            client.DownloadString("https://coderbyte.com/api/challenges/json/age-counting");
+            HttpClient client = new HttpClient();
+            string uri = "https://coderbyte.com/api/challenges/json/age-counting";
+            HttpResponseMessage response = await client.GetAsync(uri);
+            string s = await response.Content.ReadAsStringAsync();
             JObject jsonObject = JObject.Parse(s);
             string dataValue = jsonObject["data"].ToString();
             string[] Pairs = dataValue.Split(',');
@@ -467,26 +471,41 @@ namespace Maximum_SubArray_Value
             Console.WriteLine($"{count}hXblXq7Xc1");
         }
 
-        static void Quest2(string[] args)
+        public static async Task<string> retrieve()
         {
-            try
+            HttpClient client = new HttpClient();
+            string uri = "https://coderbyte.com/api/challenges/json/age-counting";
+            //string s = client.DownloadString();
+            HttpResponseMessage response = await client.GetAsync(uri);
+            string s = await response.Content.ReadAsStringAsync();
+            return s;
+        }
+        public static void Quest1()
+        {
+            //string jsonResponse = "{\"data\":\"key=IAfpK, age=2, key=WNVdi, age=1, key=jp9zt, age=47, key=jp9zt, age=1\"}";
+            string s = retrieve().Result;
+            JObject obj = JObject.Parse(s);
+            string data = obj["data"].ToString();
+            //data = data.Replace(", age=1", "");
+            string[] arr = data.Split(", ");
+            int count = 0;
+            int i = 0;
+            foreach (string item in arr)
             {
-                string logsUrl = "https://coderbyte.com/api/challenges/logs/web-logs-raw";
-                string logs = await GetLogsAsync(logsUrl);
-
-                List<string> uniqueIds = ExtractUniqueIds(logs);
-
-                foreach (var id in uniqueIds)
+                if (i > 0 && item.StartsWith("age=") && item.Contains("age=1"))
                 {
-                    Console.WriteLine(id);
+                    arr[i] = "pass";
+                    arr[i - 1] = "pass";
                 }
+                ++i;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
+            i = 0;
+            count = arr.Where(a => a != "pass").Count();
+
+            Console.WriteLine($"{count / 2}");
         }
 
+        //Retrieve Logs Fom API
         static async Task<string> GetLogsAsync(string url)
         {
             using (HttpClient httpClient = new HttpClient())
@@ -497,6 +516,7 @@ namespace Maximum_SubArray_Value
             }
         }
 
+        //Retrive Unique Ids from the Getlogs
         static List<string> ExtractUniqueIds(string logs)
         {
             List<string> ids = new List<string>();
@@ -531,6 +551,27 @@ namespace Maximum_SubArray_Value
 
             return ids;
         }
-    }
+
+        static void Quest2(string[] args)
+        {
+            try
+            {
+                string logsUrl = "https://coderbyte.com/api/challenges/logs/web-logs-raw";
+                string logs = await GetLogsAsync(logsUrl);
+
+                List<string> uniqueIds = ExtractUniqueIds(logs);
+
+                foreach (var id in uniqueIds)
+                {
+                    Console.WriteLine(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
     }
 }
+

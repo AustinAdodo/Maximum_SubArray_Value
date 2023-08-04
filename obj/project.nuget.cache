@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yeT/Be4gckSrgqyisq2I2gqi6lfDTCMVWuzCQ4PPUpDOMbuQgn+7pEmykI7LLB7/9V36neXCQO6g01v4ng2tlA==",
+  "dgSpecHash": "9vAKFz0vcKYZc0Wfjb+yy5thp2NFEG38+jzG7kwJn9hgU2ePOlmMcEg0wSyowmE2LpfTlpYWU0ZKnbdEnRtXLQ==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Benchmarks\\Benchmarks.csproj",
   "expectedPackageFiles": [
@@ -26,6 +26,7 @@
     "C:\\Users\\mudia\\.nuget\\packages\\microsoft.extensions.options\\2.1.1\\microsoft.extensions.options.2.1.1.nupkg.sha512",
     "C:\\Users\\mudia\\.nuget\\packages\\microsoft.extensions.primitives\\2.1.1\\microsoft.extensions.primitives.2.1.1.nupkg.sha512",
     "C:\\Users\\mudia\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\mudia\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\mudia\\.nuget\\packages\\perfolizer\\0.2.1\\perfolizer.0.2.1.nupkg.sha512",
     "C:\\Users\\mudia\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
     "C:\\Users\\mudia\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",

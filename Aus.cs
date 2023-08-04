@@ -10,6 +10,7 @@ using System.Collections.Specialized;
 using System.Net.Http.Headers;
 using System.Data;
 using System.Security;
+using System.Text.RegularExpressions;
 
 namespace Maximum_SubArray_Value
 {
@@ -368,7 +369,7 @@ namespace Maximum_SubArray_Value
             return ans;
         }
 
-        //Test Alaignment algo
+        //Test Alignment algo
         public static IList<string> FullJustify(string[] words, int maxWidth)
         {
             List<List<string>> stacks = new List<List<string>>();
@@ -435,9 +436,101 @@ namespace Maximum_SubArray_Value
             foreach (char i in s)
             {
                 if (i == '(' || i == '[' || i == '{') stack.Push(i);
-                else if (stack.Count == 0 || i != opcl[stack.Pop()])return false;
+                else if (stack.Count == 0 || i != opcl[stack.Pop()]) return false;
             }
             return stack.Count == 0;
         }
+
+        public static void Quest(string[] args)
+        {
+            WebClient client = new WebClient();
+            string s =
+            client.DownloadString("https://coderbyte.com/api/challenges/json/age-counting");
+            JObject jsonObject = JObject.Parse(s);
+            string dataValue = jsonObject["data"].ToString();
+            string[] Pairs = dataValue.Split(',');
+            int count = 0;
+
+            foreach (string kvp in Pairs)
+            {
+                string[] parts = kvp.Trim().Split('=');
+
+                if (parts.Length == 2 && parts[0].Trim() == "age")
+                {
+                    // Parse the age value as an integer and check if it's greater than 50
+                    if (int.TryParse(parts[1].Trim(), out int age) && age >= 50)
+                    {
+                        count++;
+                    }
+                }
+            }
+            Console.WriteLine($"{count}hXblXq7Xc1");
+        }
+
+        static void Quest2(string[] args)
+        {
+            try
+            {
+                string logsUrl = "https://coderbyte.com/api/challenges/logs/web-logs-raw";
+                string logs = await GetLogsAsync(logsUrl);
+
+                List<string> uniqueIds = ExtractUniqueIds(logs);
+
+                foreach (var id in uniqueIds)
+                {
+                    Console.WriteLine(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+        static async Task<string> GetLogsAsync(string url)
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                HttpResponseMessage response = await httpClient.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+        }
+
+        static List<string> ExtractUniqueIds(string logs)
+        {
+            List<string> ids = new List<string>();
+            Dictionary<string, int> idCount = new Dictionary<string, int>();
+
+            // Regular expression pattern to match the IDs
+            string pattern = @"\?shareLinkId=(\w+)";
+            MatchCollection matches = Regex.Matches(logs, pattern);
+
+            foreach (Match match in matches)
+            {
+                string id = match.Groups[1].Value;
+                if (idCount.ContainsKey(id))
+                {
+                    idCount[id]++;
+                }
+                else
+                {
+                    idCount[id] = 1;
+                    ids.Add(id);
+                }
+            }
+
+            // Append :N to IDs that appear more than once
+            for (int i = 0; i < ids.Count; i++)
+            {
+                if (idCount[ids[i]] > 1)
+                {
+                    ids[i] = $"{ids[i]}:{idCount[ids[i]]}";
+                }
+            }
+
+            return ids;
+        }
+    }
     }
 }

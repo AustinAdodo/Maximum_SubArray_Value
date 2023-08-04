@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Microsoft.Extensions.Http;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -13,6 +14,8 @@ using System.Security;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Drawing;
+using System.Net.Sockets;
 
 namespace Maximum_SubArray_Value
 {
@@ -21,6 +24,17 @@ namespace Maximum_SubArray_Value
         //bool isIncreasing = s.Zip(s.Skip(1), (a, b) => b > a).All(x => x);
         //validate string contains only alpa number...
         //dynamic programming
+
+        // Socket Exhaustion:Each HttpClient instance has its pool of sockets.
+        // Creating new instances for each request could exhaust the available sockets.
+        //Stale DNS Entries: //builder.Services.AddhttpClient();
+        //HttpClient instances cache DNS entries.If the IP address of a service changes, HttpClient might still point to the old address.
+        private readonly HttpClient _client;
+        public Aus(IHttpClientFactory factory)
+        {
+            _client = factory.CreateClient(); //transient
+        }
+
         public static bool validatesomeString(string s)
         {
             int[] Num = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -371,7 +385,7 @@ namespace Maximum_SubArray_Value
             return ans;
         }
 
-        //Test Alignment algo
+        //Text Alignment algo
         public static IList<string> FullJustify(string[] words, int maxWidth)
         {
             List<List<string>> stacks = new List<List<string>>();
@@ -447,9 +461,12 @@ namespace Maximum_SubArray_Value
         public async static void Quest()
         {
             HttpClient client = new HttpClient();
-            string uri = "https://coderbyte.com/api/challenges/json/age-counting";
+            string uri = "https://raw.githubusercontent.com/qualified/challenge-data/master/words_alpha.txt";
+            //string uri = "https://coderbyte.com/api/challenges/json/age-counting";
             HttpResponseMessage response = await client.GetAsync(uri);
+            response.EnsureSuccessStatusCode();
             string s = await response.Content.ReadAsStringAsync();
+            //string query = HttpContext.Request.Query["stem"].ToString();
             JObject jsonObject = JObject.Parse(s);
             string dataValue = jsonObject["data"].ToString();
             string[] Pairs = dataValue.Split(',');
@@ -458,7 +475,6 @@ namespace Maximum_SubArray_Value
             foreach (string kvp in Pairs)
             {
                 string[] parts = kvp.Trim().Split('=');
-
                 if (parts.Length == 2 && parts[0].Trim() == "age")
                 {
                     // Parse the age value as an integer and check if it's greater than 50

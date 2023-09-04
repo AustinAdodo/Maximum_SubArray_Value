@@ -17,7 +17,8 @@ namespace Maximum_SubArray_Value
                 Tuple<int, int> keyToCheck = Tuple.Create(friendsFrom[i], friendsTo[i]);
                 if (resultSet.ContainsKey(keyToCheck))
                 {
-                    int value = resultSet[keyToCheck];
+                    resultSet[keyToCheck]++;
+
                 }
                 else
                 {
@@ -33,7 +34,10 @@ namespace Maximum_SubArray_Value
             {
                 arr.Add(key.Item1 * key.Item2);
             }
-            return arr.Max();
+            int[] arr2 = arr.Where(a => a == arr.Max()).ToArray();
+            int p = arr2.Count();
+            if (arr2.Count() > 1) return arr2.Sum(); 
+            return arr2[0];
         }
 
     }

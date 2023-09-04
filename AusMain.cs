@@ -18,7 +18,6 @@ namespace Maximum_SubArray_Value
                 if (resultSet.ContainsKey(keyToCheck))
                 {
                     resultSet[keyToCheck]++;
-
                 }
                 else
                 {

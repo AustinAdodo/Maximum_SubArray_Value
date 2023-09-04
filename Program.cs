@@ -30,8 +30,10 @@ namespace Maximum_SubArray_Value
             //Math.Abs(concerned.ToList().IndexOf(a) - concerned.ToList().IndexOf(b)) == 1).Any(a => a);
             ////Console.Write(result);
             //Console.Write(String.Join(",",Aus.ChunkIter("FavouriteSkip",3)));
-
-            Aus.Quest();
+            int[] arr1 = { 1, 1, 2, 2, 2 };
+            int[] arr2 = { 2,2,3,3,4};
+            int[] weight = { };
+            Console.WriteLine(AusMain.maxShared(4,arr1.ToList(),arr2.ToList(),weight.ToList()));
         }
     }
 }

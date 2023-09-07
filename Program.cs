@@ -14,6 +14,9 @@ namespace Maximum_SubArray_Value
             //int[] concerned = { 1, 0, 0, 0, 0, 0,1 };
             string[] arr101 = { "What", "must", "be", "shall", "be." };
             string[] arr102 = { "This", "is", "an", "example", "of", "text", "justification." };
+            int[] cost = { 2,5,3,11,1};
+            string[] labels = {"legal","illegal", "legal", "illegal", "legal" };
+            int dailyCount = 2;
             //Console.WriteLine(string.Join(",",Aus.FullJustify(arr,16)));
             //List<Tuple<string, int>> tups = new List<Tuple<string, int>>();
             //tups.Add(new Tuple<string, int>("Buck", 12));
@@ -33,7 +36,8 @@ namespace Maximum_SubArray_Value
             int[] arr1 = { 1, 1, 2, 2, 2 };
             int[] arr2 = { 2,2,3,3,4};
             int[] weight = { };
-            Console.WriteLine(AusMain.maxShared(4,arr1.ToList(),arr2.ToList(),weight.ToList()));
+            Console.Write(AusMain.maxCost(cost.ToList(),labels.ToList(),dailyCount)); 
+            //Console.WriteLine(AusMain.maxShared(4,arr1.ToList(),arr2.ToList(),weight.ToList()));
         }
     }
 }

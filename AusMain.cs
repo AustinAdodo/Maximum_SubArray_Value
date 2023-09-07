@@ -11,10 +11,10 @@ namespace Maximum_SubArray_Value
         /// <summary>
         /// find the pairs with the maximum recurring interests.
         /// </summary>
-        /// <param name="friendsNodes"></param>
-        /// <param name="friendsFrom"></param>
-        /// <param name="friendsTo"></param>
-        /// <param name="friendsWeight"></param>
+        /// <param name="friendsNodes">Number of Participating Friends</param>
+        /// <param name="friendsFrom">A Person with an interest</param>
+        /// <param name="friendsTo"> A second Person with a shared interest</param>
+        /// <param name="friendsWeight">Strength of a common interest</param>
         /// <returns></returns>
         public static int maxShared(int friendsNodes, List<int> friendsFrom, List<int> friendsTo, List<int> friendsWeight)
         {

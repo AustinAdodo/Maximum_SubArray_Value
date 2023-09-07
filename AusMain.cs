@@ -15,8 +15,8 @@ namespace Maximum_SubArray_Value
         /// <param name="friendsFrom">A Person with an interest</param>
         /// <param name="friendsTo"> A second Person with a shared interest</param>
         /// <param name="friendsWeight">Strength of a common interest</param>
-        /// <returns></returns>
-        public static int maxShared(int friendsNodes, List<int> friendsFrom, List<int> friendsTo, List<int> friendsWeight)
+        /// <returns>The maximum number of friends shared by any two people.</returns>
+        public static int MaxShared(int friendsNodes, List<int> friendsFrom, List<int> friendsTo, List<int> friendsWeight)
         {
             Dictionary<Tuple<int, int>, int> resultSet = new();
             for (int i = 0; i < friendsFrom.Count; ++i)

@@ -37,7 +37,7 @@ namespace Maximum_SubArray_Value
             int[] arr2 = { 2,2,3,3,4};
             int[] weight = { };
             Console.Write(AusMain.maxCost(cost.ToList(),labels.ToList(),dailyCount)); 
-            //Console.WriteLine(AusMain.maxShared(4,arr1.ToList(),arr2.ToList(),weight.ToList()));
+            //Console.WriteLine(AusMain.MaxShared(4,arr1.ToList(),arr2.ToList(),weight.ToList()));
         }
     }
 }

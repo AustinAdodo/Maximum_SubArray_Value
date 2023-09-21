@@ -46,7 +46,6 @@ namespace Maximum_SubArray_Value
             return arr2[0];
         }
 
-
         public static int maxCost(List<int> cost, List<string> labels, int dailyCount)
         {
             Dictionary<string, int> reg = new();

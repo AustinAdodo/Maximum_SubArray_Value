@@ -31,14 +31,14 @@ namespace Maximum_SubArray_Value
             {
                 throw new Exception(e.Message);
             }
-            catch (PermissionException e)
-            {
-                throw new Exception(e.Message);
-            }
-            catch (ProcessLookupException e)
-            {
-                throw new Exception(e.Message);
-            }
+            //catch (PermissionException e)
+            //{
+            //    throw new Exception(e.Message);
+            //}
+            //catch (ProcessLookupException e)
+            //{
+            //    throw new Exception(e.Message);
+            //}
             return false;
         }
 

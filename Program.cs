@@ -14,8 +14,8 @@ namespace Maximum_SubArray_Value
             //int[] concerned = { 1, 0, 0, 0, 0, 0,1 };
             string[] arr101 = { "What", "must", "be", "shall", "be." };
             string[] arr102 = { "This", "is", "an", "example", "of", "text", "justification." };
-            int[] cost = { 2,5,3,11,1};
-            string[] labels = {"legal","illegal", "legal", "illegal", "legal" };
+            int[] cost = { 2, 5, 3, 11, 1 };
+            string[] labels = { "legal", "illegal", "legal", "illegal", "legal" };
             int dailyCount = 2;
             //Console.WriteLine(string.Join(",",Aus.FullJustify(arr,16)));
             List<Tuple<string, int>> tups = new List<Tuple<string, int>>
@@ -31,6 +31,9 @@ namespace Maximum_SubArray_Value
             var axe = tups.GroupBy(a => a).OrderBy(a => a.Key);
             if (condition) Console.Write(string.Join(",", tups.OrderBy(a => a.Item2).ThenBy(a => a.Item1).ToList()));
             else { Console.Write(string.Join(",", tups.OrderBy(a => a.Item2))); }
+            Console.Write("\n");
+            var a = Enumerable.Repeat(2,6);
+            Console.WriteLine(string.Join(" ",a));
             //bool result = concerned.Zip(concerned.Skip(1), (a, b) =>
             //Math.Abs(concerned.ToList().IndexOf(a) - concerned.ToList().IndexOf(b)) == 1).Any(a => a);
             ////Console.Write(result);

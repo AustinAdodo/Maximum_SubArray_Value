@@ -42,5 +42,26 @@ namespace Maximum_SubArray_Value
             return false;
         }
 
+        public static string ToBinary(string data)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in data.ToCharArray())
+            {
+                sb.Append(Convert.ToString(c, 2).PadLeft(8, '0'));
+            }
+            return sb.ToString();
+        }
+
+        public static string FromBinary(string binary)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < binary.Length; i += 8)
+            {
+                char c = Convert.ToChar(Convert.ToInt32(binary.Substring(i, 8), 2));
+                sb.Append(c);
+            }
+            return sb.ToString();
+        }
+
     }
 }

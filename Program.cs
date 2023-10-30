@@ -18,22 +18,21 @@ namespace Maximum_SubArray_Value
             string[] labels = { "legal", "illegal", "legal", "illegal", "legal" };
             int dailyCount = 2;
             //Console.WriteLine(string.Join(",",Aus.FullJustify(arr,16)));
-            List<Tuple<string, int>> tups = new List<Tuple<string, int>>
-            {
-                new Tuple<string, int>("Buck", 12),
-                new Tuple<string, int>("Luck", 10),
-                new Tuple<string, int>("Duck", 3),
-                new Tuple<string, int>("Ruck", 6),
-                new Tuple<string, int>("Durk", 16),
-                new Tuple<string, int>("Shock", 12)
-            };
-            var condition = tups.GroupBy(a => a).Any(group => group.Count() >= 2);
-            var axe = tups.GroupBy(a => a).OrderBy(a => a.Key);
-            if (condition) Console.Write(string.Join(",", tups.OrderBy(a => a.Item2).ThenBy(a => a.Item1).ToList()));
-            else { Console.Write(string.Join(",", tups.OrderBy(a => a.Item2))); }
+            //List<Tuple<string, int>> tups = new List<Tuple<string, int>>
+            //{
+            //    new Tuple<string, int>("Buck", 12),
+            //    new Tuple<string, int>("Luck", 10),
+            //    new Tuple<string, int>("Duck", 3),
+            //    new Tuple<string, int>("Ruck", 6),
+            //    new Tuple<string, int>("Durk", 16),
+            //    new Tuple<string, int>("Shock", 12)
+            //};
+            //var condition = tups.GroupBy(a => a).Any(group => group.Count() >= 2);
+            //var axe = tups.GroupBy(a => a).OrderBy(a => a.Key);
+            //if (condition) Console.Write(string.Join(",", tups.OrderBy(a => a.Item2).ThenBy(a => a.Item1).ToList()));
+            //else { Console.Write(string.Join(",", tups.OrderBy(a => a.Item2))); }
             Console.Write("\n");
-            var a = Enumerable.Repeat(2,6);
-            Console.WriteLine(string.Join(" ",a));
+            Console.WriteLine(string.Join(" ",Aus1.Rep("11","9")));
             //bool result = concerned.Zip(concerned.Skip(1), (a, b) =>
             //Math.Abs(concerned.ToList().IndexOf(a) - concerned.ToList().IndexOf(b)) == 1).Any(a => a);
             ////Console.Write(result);

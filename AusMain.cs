@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,6 +64,28 @@ namespace Maximum_SubArray_Value
                 ans.Add(cost[i]);
             }
             return ans.Sum();
+        }
+
+        public static string Longest_recurring_substring(string s)
+        {
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+            for (int i = 0; i < s.Length; i++)
+            {
+                for (int j = 1; i + j <= s.Length; j++)
+                {
+                    var subs = s.Substring(i, j);
+                    if (dic.ContainsKey(subs)) dic[subs]++;
+                    else { dic.Add(subs, 1); }
+                }
+            }
+            var sortedDic = dic.OrderByDescending(pair => pair.Value)
+                               .ThenBy(pair => pair.Key.Length)
+                               .ToDictionary(pair => pair.Key, pair => pair.Value);
+
+            var longestRecurringSubstring = sortedDic.FirstOrDefault();
+            //Var longest_key_length = dic.Keys.Where(a => a.Length == dic.Keys.Max());
+            return longestRecurringSubstring.Key;
+           
         }
     }
 }

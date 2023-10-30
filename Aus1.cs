@@ -80,5 +80,19 @@ namespace Maximum_SubArray_Value
             string result = string.Join("", temp);
             return result;
         }
+
+        public static string Rep(string a, string b)
+        {
+            int maxLength = Math.Max(a.Length, b.Length);
+            a = a.PadLeft(maxLength, '0');
+            b = b.PadLeft(maxLength, '0');
+            List<string> res = new();
+            for (int i = 0; i < maxLength; ++i)
+            {
+                int x = int.Parse(a[i].ToString()) + int.Parse(b[i].ToString());
+                res.Add(x.ToString());
+            }
+            return string.Join("", res);
+        }
     }
 }

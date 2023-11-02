@@ -85,7 +85,6 @@ namespace Maximum_SubArray_Value
             var longestRecurringSubstring = sortedDic.FirstOrDefault();
             //Var longest_key_length = dic.Keys.Where(a => a.Length == dic.Keys.Max());
             return longestRecurringSubstring.Key;
-           
         }
     }
 }

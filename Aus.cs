@@ -174,7 +174,7 @@ namespace Maximum_SubArray_Value
             return result;
         }
 
-        //complex chunks Methond method
+        //complex chunks method
 
         public static IEnumerable<string> ChunkIter2(string s, int chunks)
         {

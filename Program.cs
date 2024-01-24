@@ -28,16 +28,18 @@ namespace Maximum_SubArray_Value
             //    new Tuple<string, int>("Shock", 12)
             //};
             //var condition = tups.GroupBy(a => a).Any(group => group.Count() >= 2);
-            //var axe = tups.GroupBy(a => a).OrderBy(a => a.Key);
+            //var axe = tups.GroupBy(a => a.Item2).OrderBy(a => a.Key);
             //if (condition) Console.Write(string.Join(",", tups.OrderBy(a => a.Item2).ThenBy(a => a.Item1).ToList()));
             //else { Console.Write(string.Join(",", tups.OrderBy(a => a.Item2))); }
-            Console.Write("\n");
-            Console.WriteLine(string.Join(" ",Aus1.Rep("11","9")));
+            //Console.Write("\n");
+            //Console.WriteLine(string.Join(" ",Aus1.Rep("11","9")));
             //bool result = concerned.Zip(concerned.Skip(1), (a, b) =>
             //Math.Abs(concerned.ToList().IndexOf(a) - concerned.ToList().IndexOf(b)) == 1).Any(a => a);
             ////Console.Write(result);
 
             //Console.WriteLine(AusMain.MaxShared(4,arr1.ToList(),arr2.ToList(),weight.ToList()));
+
+            Console.WriteLine(string.Join("\n", Aus.ChunkIter("Brethen_Bread",4)));
         }
     }
 }

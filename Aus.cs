@@ -174,29 +174,29 @@ namespace Maximum_SubArray_Value
             return result;
         }
 
-        //complex chunks method
+        // Best Method for Chunks complex chunks method
 
-        public static IEnumerable<string> ChunkIter2(string s, int chunks)
+        public static IEnumerable<string> ChunkIter(string s, int chunks)
         {
-            int[] arr2 = new int[chunks]; int p = 0;
-            int chunker = chunks;
-            int[] store = new int[chunks];
-            List<string> result = new List<string>();
-            if (s.Length > 0 && s.Length <= chunks) return s.Select(c => c.ToString()); ;
-            if (s.Length > 0 && chunks == 0) throw new ArgumentException();
-            if (s.Length == 0 && chunks >= 0) return Array.Empty<string>();
-            int premium = s.Length;
-
-            for (int i = 0; i < arr2.Length; i++)
+            if (chunks <= 0)
             {
-                result.Add(s.Substring(p, arr2[i]));
-                p += arr2[i];
+                throw new ArgumentException("Chunks should be greater than 0");
+            }
+
+            int chunkSize = (int)Math.Ceiling((double)s.Length / chunks);
+            List<string> result = new List<string>();
+
+            for (int i = 0; i < s.Length; i += chunkSize)
+            {
+                int remainingLength = Math.Min(chunkSize, s.Length - i);
+                result.Add(s.Substring(i, remainingLength));
             }
             return result;
         }
 
+
         //Complex Chunks first method
-        public static IEnumerable<string> ChunkIter(string s, int chunks)
+        public static IEnumerable<string> ChunkIter1(string s, int chunks)
         {
             string[] arr = Array.ConvertAll(s.ToCharArray(), c => c.ToString());
             int[] arr2 = new int[chunks]; int p = 0;
@@ -252,36 +252,27 @@ namespace Maximum_SubArray_Value
 
         public static bool IsSawToothArr(int[] arr)
         {
-            //bool result = false;    
-            if (arr.Length > 1 && arr[0] < arr[1])
-            {
-                //LinkedHashMap
-                //OrderedDictionary linkedHashMap = new OrderedDictionary();
-                //if (arr.Length == 2) return true;
-                for (int i = 1; i < arr.Length; i += 2)
-                {
-                    if (arr.Length == 2) return true;
-                    if (i + 1 <= arr.Length - 1 && arr[i - 1] < arr[i] && arr[i] > arr[i + 1]
-                        || i == arr.Length - 1 && arr[i] > arr[i - 1]) continue;
-                    return false;
-                }
-                return true;
-            }
+            //int firstOccurrenceIndex = Array.IndexOf(arr, 1);
+            //int secondOccurrenceIndex = Array.IndexOf(arr, 1, firstOccurrenceIndex + 1);
+            if (arr.Length < 2)
+                return false;
 
-            if (arr.Length > 1 && arr[0] > arr[1])
+            bool increasing = arr[0] < arr[1];
+
+            for (int i = 1; i < arr.Length - 1; i++)
             {
-                //if (arr.Length == 2) return true;
-                for (int i = 1; i < arr.Length; i += 2)
+                if (i % 2 == 1) // Check only on odd indices
                 {
-                    if (arr.Length == 2) return true;
-                    if (i + 1 <= arr.Length - 1 && arr[i - 1] > arr[i] && arr[i] < arr[i + 1]
-                        || i == arr.Length - 1 && arr[i] < arr[i - 1]) continue;
-                    return false;
+                    if ((increasing && !(arr[i - 1] < arr[i] && arr[i] > arr[i + 1]))
+                        || (!increasing && !(arr[i - 1] > arr[i] && arr[i] < arr[i + 1])))
+                    {
+                        return false;
+                    }
                 }
-                return true;
             }
-            return false;
+            return true;
         }
+
 
         //Taking Only Contigious Sub Arrays.
         public static long CountSawTooth(int[] arr)

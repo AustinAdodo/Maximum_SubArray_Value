@@ -1,4 +1,10 @@
 ﻿using System.Data;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Text.Json;
 
 
 namespace Maximum_SubArray_Value
@@ -420,6 +426,49 @@ namespace Maximum_SubArray_Value
                 else if (stack.Count == 0 || i != opcl[stack.Pop()]) return false;
             }
             return stack.Count == 0;
+        }
+    }
+    public class CleanUpClass
+    {
+        public ICollection<Dictionary<string, string>> NameValuePairs { get; set; }
+        public Dictionary<string, Dictionary<string, string>> ArrayValuePairs { get; set; }
+
+        public void Clean()
+        {
+            // Remove keys with values of N/A, -, or empty strings
+            if (NameValuePairs != null && NameValuePairs.Count > 0)
+            {
+                foreach (var dict in NameValuePairs)
+                {
+                    var keysToRemove = new List<string>();
+                    foreach (var kvp in dict)
+                    {
+                        if (kvp.Value == "N/A" || kvp.Value == "-" || string.IsNullOrEmpty(kvp.Value))
+                        {
+                            keysToRemove.Add(kvp.Key);
+                        }
+                    }
+                    foreach (var key in keysToRemove)
+                    {
+                        dict.Remove(key);
+                    }
+                }
+            }
+
+            // Remove items from arrays with values of N/A, -, or empty strings
+            if (ArrayValuePairs != null && ArrayValuePairs.Count > 0)
+            {
+                foreach (var kvp in ArrayValuePairs)
+                {
+                    foreach (var innerKvp in kvp.Value.ToList())
+                    {
+                        if (innerKvp.Value == "N/A" || innerKvp.Value == "-" || string.IsNullOrEmpty(innerKvp.Value))
+                        {
+                            kvp.Value.Remove(innerKvp.Key);
+                        }
+                    }
+                }
+            }
         }
     }
 }

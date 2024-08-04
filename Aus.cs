@@ -432,7 +432,6 @@ namespace Maximum_SubArray_Value
     {
         public ICollection<Dictionary<string, string>> NameValuePairs { get; set; }
         public Dictionary<string, Dictionary<string, string>> ArrayValuePairs { get; set; }
-
         public void Clean()
         {
             // Remove keys with values of N/A, -, or empty strings
@@ -469,6 +468,14 @@ namespace Maximum_SubArray_Value
                     }
                 }
             }
+        }
+    }
+
+    public class Work
+    {
+        public static void something(string[] args)
+        {
+                
         }
     }
 }

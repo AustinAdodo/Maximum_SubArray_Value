@@ -42,23 +42,29 @@ namespace Maximum_SubArray_Value
 
             //Console.WriteLine(string.Join("\n", Aus.ChunkIter("Brethen_Bread",4)));
 
-            var url = "https://coderbyte.com/api/challenges/json/json-cleaning";
-            var client = new HttpClient();
-            var response = await client.GetAsync(url);
-            var responseContent = await response.Content.ReadAsStringAsync();
+            //var url = "https://coderbyte.com/api/challenges/json/json-cleaning";
+            //var client = new HttpClient();
+            //var response = await client.GetAsync(url);
+            //var responseContent = await response.Content.ReadAsStringAsync();
 
-            // Define a variable with the name "varOcg"
-            var varOcg = true;
+            //// Define a variable with the name "varOcg"
+            //var varOcg = true;
 
-            // Deserialize the JSON response into CleanUpClass
-            var cleanUpClass = JsonSerializer.Deserialize<CleanUpClass>(responseContent);
+            //// Deserialize the JSON response into CleanUpClass
+            //var cleanUpClass = JsonSerializer.Deserialize<CleanUpClass>(responseContent);
 
-            // Clean up the object according to the rules
-            cleanUpClass.Clean();
+            //// Clean up the object according to the rules
+            //cleanUpClass.Clean();
 
-            // Serialize the modified object to a string and print it
-            var modifiedJson = JsonSerializer.Serialize(cleanUpClass);
-            Console.WriteLine(modifiedJson);
+            //// Serialize the modified object to a string and print it
+            //var modifiedJson = JsonSerializer.Serialize(cleanUpClass);
+            //Console.WriteLine(modifiedJson);
+            
+            
+            ///Round Trip on array
+            string[] k = {"4","3:1","4:2","2:1"};
+            Console.Write(AusMain.Round_Trip(k));
+            
         }
     }
 }

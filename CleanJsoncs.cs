@@ -13,7 +13,6 @@ namespace Maximum_SubArray_Value
 
         class MainClass
         {
-
             static Dictionary<string, object> FilterJsonElement(JsonElement element)
             {
                 var filteredDict = new Dictionary<string, object>();
@@ -113,6 +112,13 @@ namespace Maximum_SubArray_Value
 
             static async Task CleanUp()
             {
+                string jsonString = @"{
+            ""name"": { ""first"": ""Robert"", ""middle"": """", ""last"": ""Smith"" },
+            ""age"": 25,
+            ""DOB"": ""-"",
+            ""hobbies"": [""running"", ""coding"", ""-""],
+            ""education"": { ""highschool"": ""N/A"", ""college"": ""Yale"" }
+                 }";
                 HttpClient client = new HttpClient();
                 string s = await client.GetStringAsync("https://coderbyte.com/api/challenges/json/json-cleaning");
 
